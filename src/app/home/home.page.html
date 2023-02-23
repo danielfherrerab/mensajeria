@@ -8,5 +8,17 @@
 </ion-header>
 
 <ion-content>
-<ion-label>Estas en home</ion-label>
+  <ion-card (click)="presentActionSheet()">
+    <ion-card-header>
+      <ion-card-title>(Estado)</ion-card-title>
+    </ion-card-header>
+  
+    <ion-card-content>
+      (descripcion)
+    </ion-card-content>
+  
+    <ion-button fill="clear">(fecha)</ion-button>
+    <ion-button fill="clear">(Mensajero)</ion-button>
+    <code *ngIf="result"> {{ result }} </code>
+  </ion-card>
 </ion-content>

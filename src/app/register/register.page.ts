@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from './../services/auth.service';
 import { Router } from '@angular/router';
+import { Firestore, addDoc, collection } from '@angular/fire/firestore';
+import { Auth, signInWithEmailAndPassword, createUserWithEmailAndPassword } from '@angular/fire/auth';
+
+import { RegisterData } from '../interfaces/usuarios.interface';
 
 @Component({
   selector: 'app-register',
@@ -10,35 +14,58 @@ import { Router } from '@angular/router';
 })
 export class RegisterPage implements OnInit {
 
-  form = this.formBuilder.group({
-    email: ['', [Validators.email, Validators.required]],
-    password: ['', [Validators.required]],
-    confirmPassword: ['', [Validators.required]],
-  })
+  form: FormGroup;
+
   constructor(
     private formBuilder: FormBuilder,
-    private auth: AuthService,
+    private auth: Auth,
     private router: Router,
-  ) { }
+    private firestore: Firestore
+  ) {
+    this.form = new FormGroup({
+      name: new FormControl,
+      email: new FormControl,
+      password: new FormControl,
+      confirmPassword: new FormControl,
+      role: new FormControl,
+    })
+  }
 
   ngOnInit() {
   }
 
-  register() {
+  async register() {
+    console.log(this.form.value);
     if (this.form.valid) {
-      const { email, password } = this.form.getRawValue();
-      if (email && password) {
-        this.auth.register( email, password )                       
-        .then(() => {
-          this.router.navigate(['/home'])
-        })
-        .catch(error => {
-          console.error(error);
-        })
+      const { email, password, role, name } = this.form.getRawValue();
+      if (email && password && role && name) {
+        console.log("voy a crear");
+        const userCredential = await createUserWithEmailAndPassword(this.auth, email, password);
+        
+        if(userCredential) {
+          await this.addUsuario(this.form.value)
+
+          .then(() => {
+            this.router.navigate(['/home'])
+          })
+          .catch(error => {
+            console.error(error);
+          })
+        }
+        return signInWithEmailAndPassword(this.auth, email, password);
       }
     } else {
       this.form.markAllAsTouched();
+      return console.log("debe llenar");
     }
+  }
+
+  async addUsuario(user: RegisterData) {
+    var estado = false;
+    console.log(user);
+
+    const userRef = collection(this.firestore, 'usuarios');
+    return addDoc(userRef, user);
   }
 
 }
