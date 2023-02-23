@@ -1,10 +1,12 @@
 import { Injectable } from '@angular/core';
-import { Auth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut } from '@angular/fire/auth';
+import { Auth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, authState } from '@angular/fire/auth';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+
+  authState$ = authState(this.afAuth);
 
   constructor(
     private afAuth: Auth
@@ -19,7 +21,7 @@ export class AuthService {
     return await signInWithEmailAndPassword(this.afAuth, email, password);
   }
 
-  async logout(email: string, password: string) {
-    return signOut(this.afAuth);
+  async logout() {
+    return await signOut(this.afAuth);
   }
 }

@@ -1,10 +1,13 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { AuthGuard, redirectUnauthorizedTo } from '@angular/fire/auth-guard';
+
+const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['login']);
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'folder/Inbox',
+    redirectTo: 'login',
     pathMatch: 'full'
   },
   {
@@ -17,6 +20,8 @@ const routes: Routes = [
   },
   {
     path: 'home',
+    canActivate: [ AuthGuard ],
+    data: { authGuardPipe : redirectUnauthorizedToLogin },
     loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
   },
   {
