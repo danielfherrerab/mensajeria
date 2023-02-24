@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { AuthService } from './../services/auth.service';
+import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Firestore, addDoc, collection } from '@angular/fire/firestore';
 import { Auth, signInWithEmailAndPassword, createUserWithEmailAndPassword } from '@angular/fire/auth';
+import { RegisterData } from '../interfaces/models.interface';
 
-import { RegisterData } from '../interfaces/usuarios.interface';
+
 
 @Component({
   selector: 'app-register',
@@ -17,7 +17,6 @@ export class RegisterPage implements OnInit {
   form: FormGroup;
 
   constructor(
-    private formBuilder: FormBuilder,
     private auth: Auth,
     private router: Router,
     private firestore: Firestore
@@ -60,7 +59,7 @@ export class RegisterPage implements OnInit {
     }
   }
 
-  async addUsuario(user: RegisterData) {
+  async addUsuario(user: RegisterData ) {
     var estado = false;
     console.log(user);
 

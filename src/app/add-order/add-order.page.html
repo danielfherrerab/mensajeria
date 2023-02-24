@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Add Order</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <form [formGroup]="orderForm" (ngSubmit)="onSubmit()">
+    <ion-item>
+      <ion-label position="floating">Descripción</ion-label>
+      <ion-input formControlName="descripcion"></ion-input>
+    </ion-item>
+  
+    <ion-item>
+      <ion-label position="floating">Fecha Requerida</ion-label>
+      <ion-datetime displayFormat="DD/MM/YYYY" formControlName="fechaRequerida"></ion-datetime>
+    </ion-item>
+  
+    <ion-item>
+      <ion-label>Visto</ion-label>
+      <ion-checkbox formControlName="visto"></ion-checkbox>
+    </ion-item>
+  
+    <ion-item>
+      <ion-label position="floating">Prioridad</ion-label>
+      <ion-select formControlName="prioridad">
+        <ion-select-option value="1">Baja</ion-select-option>
+        <ion-select-option value="2">Media</ion-select-option>
+        <ion-select-option value="3">Alta</ion-select-option>
+      </ion-select>
+    </ion-item>
+  
+    <ion-button expand="block" type="submit">Guardar</ion-button>
+  </form>
+  
+</ion-content>

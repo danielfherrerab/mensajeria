@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, authState, User } from '@angular/fire/auth';
+import { signInWithEmailAndPassword, signOut, authState } from '@angular/fire/auth';
 import { Auth } from '@angular/fire/auth';
-import { Firestore, addDoc, collection } from '@angular/fire/firestore';
+import { Firestore } from '@angular/fire/firestore';
+
 
 @Injectable({
   providedIn: 'root'
@@ -19,4 +20,5 @@ export class AuthService {
   async logout() {
     return await signOut(this.auth);
   }
+
 }

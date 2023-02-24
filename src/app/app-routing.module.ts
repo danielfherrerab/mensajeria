@@ -8,7 +8,7 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'login',
+    redirectTo: 'add-order',
     pathMatch: 'full'
   },
   {
@@ -32,6 +32,14 @@ const routes: Routes = [
     // canActivate: [ AuthGuard ],
     // data: { authGuardPipe : redirectUnauthorizedToLogin },
     loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
+  },
+  {
+    path: 'add-order',
+    loadChildren: () => import('./add-order/add-order.module').then( m => m.AddOrderPageModule)
+  },
+  {
+    path: 'location',
+    loadChildren: () => import('./location/location.module').then( m => m.LocationPageModule)
   }
 ];
 

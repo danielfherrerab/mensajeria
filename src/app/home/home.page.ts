@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActionSheetController } from '@ionic/angular';
+import { OrderData } from '../interfaces/models.interface';
+import { OrderListService } from '../services/order-list.service';
 
 @Component({
   selector: 'app-home',
@@ -7,11 +9,18 @@ import { ActionSheetController } from '@ionic/angular';
   styleUrls: ['./home.page.scss'],
 })
 export class HomePage implements OnInit {
-  result: string;
+  result: string = '';
+  orders: OrderData[];
 
-  constructor(private actionSheetCtrl: ActionSheetController) {}
+  constructor(private actionSheetCtrl: ActionSheetController, private OrderListService: OrderListService) {
+    this.orders = [];
+  }
 
-  ngOnInit() {
+  ngOnInit(): void {
+    this.OrderListService.getOrders().subscribe(orders => {
+      console.log(orders)
+      this.orders = orders;
+    })
   }
 
   async presentActionSheet() {
