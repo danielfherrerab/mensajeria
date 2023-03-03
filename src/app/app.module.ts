@@ -15,7 +15,7 @@ import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { AngularFireModule } from '@angular/fire/compat';
 
-import { LeafletModule } from '@asymmetrik/ngx-leaflet';
+import { MbscModule } from '@mobiscroll/angular';
 
 @NgModule({
   declarations: [AppComponent],
@@ -23,9 +23,9 @@ import { LeafletModule } from '@asymmetrik/ngx-leaflet';
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
-    IonicModule.forRoot(), 
-    LeafletModule,
+    IonicModule.forRoot(),
     AppRoutingModule,
+    MbscModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
     provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),

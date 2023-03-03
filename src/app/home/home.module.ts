@@ -8,13 +8,19 @@ import { HomePageRoutingModule } from './home-routing.module';
 
 import { HomePage } from './home.page';
 
+import { MbscModule } from '@mobiscroll/angular';
+// import { CalendarEventsComponent } from '../components/calendar-events/calendar-events.component';
+
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    HomePageRoutingModule
+    HomePageRoutingModule,
+    MbscModule
+    // CalendarEventsComponent
   ],
-  declarations: [HomePage]
+  declarations: [HomePage, ],
+  // exports: [CalendarEventsComponent]
 })
 export class HomePageModule {}

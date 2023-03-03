@@ -1,11 +1,13 @@
 <ion-app>
   <ion-split-pane contentId="main-content">
     <ion-menu contentId="main-content" type="overlay">
-      <ion-content>
-        <ion-list id="inbox-list">
+      <ion-content when="false">
+        <ion-card id="inbox-list">
           <ng-container *ngIf="user$ | async as user">
-          <ion-list-header>Hola</ion-list-header>
-          <ion-note>{{ user.email }}</ion-note>
+            <ion-item>
+              <ion-list-header>Hola {{ user.email }}</ion-list-header>
+              <ion-label>A continuacion tiene las siguientes opciones de navegacion:</ion-label>
+            </ion-item>
           </ng-container>
 
           <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages; let i = index">
@@ -14,15 +16,17 @@
               <ion-label>{{ p.title }}</ion-label>
             </ion-item>
           </ion-menu-toggle>
-        </ion-list>
+        </ion-card>
 
-        <ion-menu-toggle auto-hide="false" *ngFor="let l of appLogout; let i = index">
-          <ion-item (click)="logout()" routerDirection="root" [routerLink]="[l.url]" lines="none" detail="false" routerLinkActive="selected">
-            <ion-icon slot="start" [ios]="l.icon + '-outline'" [md]="l.icon + '-sharp'"></ion-icon>
-            <ion-label>{{ l.title }}</ion-label>
-          </ion-item>
-        </ion-menu-toggle>
-        
+        <ion-card id="inbox-list">
+          <ion-menu-toggle auto-hide="false" *ngFor="let l of appLogout; let i = index">
+            <ion-item (click)="logout()" routerDirection="root" [routerLink]="[l.url]" lines="none" detail="false" routerLinkActive="selected">
+              <ion-icon slot="start" [ios]="l.icon + '-outline'" [md]="l.icon + '-sharp'"></ion-icon>
+              <ion-label>{{ l.title }}</ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+        </ion-card>
+
       </ion-content>
     </ion-menu>
     <ion-router-outlet id="main-content"></ion-router-outlet>

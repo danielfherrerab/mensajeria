@@ -24,6 +24,7 @@
     ],
     "useDefineForClassFields": false,
     "skipLibCheck": true,
+    "types": ["ol"],
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,

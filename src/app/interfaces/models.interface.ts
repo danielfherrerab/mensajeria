@@ -1,3 +1,5 @@
+import { Timestamp } from "firebase/firestore";
+
 export interface RegisterData {
   id?: string,
   name: string,
@@ -6,9 +8,9 @@ export interface RegisterData {
 }
 
 export interface OrderData {
-  uid: string,
-  descripcion: string | null,
-  fechaRequerida: Date | null,
+  id: string,
+  descripcion: string,
+  fechaRequerida: Timestamp,
   estado:  'pendiente' | 'completado' | 'reprogramado',
   visto: boolean,
   prioridad: number
