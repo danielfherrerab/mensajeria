@@ -27,7 +27,7 @@ export class AppComponent {
   constructor(
     private auth: AuthService,
     private router: Router
-  ) {}
+  ) { }
 
   async logout() {
     await this.auth.logout();

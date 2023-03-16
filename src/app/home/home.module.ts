@@ -7,9 +7,8 @@ import { IonicModule } from '@ionic/angular';
 import { HomePageRoutingModule } from './home-routing.module';
 
 import { HomePage } from './home.page';
-
-import { MbscModule } from '@mobiscroll/angular';
 // import { CalendarEventsComponent } from '../components/calendar-events/calendar-events.component';
+import { CalendarModule } from 'ion2-calendar';
 
 @NgModule({
   imports: [
@@ -17,7 +16,6 @@ import { MbscModule } from '@mobiscroll/angular';
     FormsModule,
     IonicModule,
     HomePageRoutingModule,
-    MbscModule
     // CalendarEventsComponent
   ],
   declarations: [HomePage, ],

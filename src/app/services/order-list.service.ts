@@ -17,6 +17,6 @@ export class OrderListService {
 
   addOrder(order: OrderData) {
     const encargoRef = collection(this.firestore, 'encargos');
-    return encargoRef.addDoc(order)
+    return addDoc(encargoRef, order); // add the order object to the encargoRef collection
   }
 }

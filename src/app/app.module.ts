@@ -15,8 +15,6 @@ import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { AngularFireModule } from '@angular/fire/compat';
 
-import { MbscModule } from '@mobiscroll/angular';
-
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -25,14 +23,13 @@ import { MbscModule } from '@mobiscroll/angular';
     ReactiveFormsModule,
     IonicModule.forRoot(),
     AppRoutingModule,
-    MbscModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
     provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
     provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore()),
   ],
-  providers: [],
+  providers: [ ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
